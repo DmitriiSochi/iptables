@@ -55,4 +55,4 @@ iptables -A FI -p tcp --dport 8080 -j ACCEPT
 iptables -A FI -p tcp --dport 443 -m recent --set --name HTTP_LIMIT
 iptables -A FI -p tcp --dport 443 -m recent --update --seconds 60 --hitcount 200 --name HTTP_LIMIT -j DROP
 iptables -A FI -p tcp --dport 443 -j ACCEPT
-#Настройка порта 
+#Настройка порта http 
