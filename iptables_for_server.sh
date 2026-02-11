@@ -40,6 +40,7 @@ iptables -A INPUT -m conntrack --ctstate NEW -j FI
 #Создаю правила для цепочки INPUT
 #Настройка защиты 22 порта от подбора пароля, если в течении одной минуты ктото попытается подобрать пароль больше чем 4 раза то будет отброшен
 iptables -A FI -p tcp --dport 22 -m recent --set --name SSH_LIMIT
+iptables -A FI -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4 --name SSH_LIMIT -j LOG --log-prefix "IPTABLES_SSH_DROP: "
 iptables -A FI -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4 --name SSH_LIMIT -j DROP
 iptables -A FI -p tcp --dport 22 -j ACCEPT
 #Настройка порта 80
